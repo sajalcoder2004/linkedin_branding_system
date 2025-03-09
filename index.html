@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Font Awesome (For Icons) -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fa-brands fa-linkedin"></i> LinkedIn AI Generator</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#profile"><i class="fa-solid fa-user-edit"></i> Profile Generator</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#post"><i class="fa-solid fa-pen-nib"></i> Post Generator</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#image"><i class="fa-solid fa-image"></i> Image Prompts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#carousel"><i class="fa-solid fa-layer-group"></i> Carousel</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact"><i class="fa-solid fa-envelope"></i> Contact</a></li>
+                </ul>
+                <a href="#generate" class="btn btn-primary"><i class="fa-solid fa-magic"></i> Try Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="home" class="hero-section">
+        <div class="container text-center">
+            <h1 class="hero-title"><i class="fa-solid fa-bolt"></i> Boost Your LinkedIn Profile & Posts with AI</h1>
+            <p class="hero-subtitle"><i class="fa-solid fa-lightbulb"></i> Generate catchy headlines, engaging About sections, and viral posts in seconds!</p>
+            <a href="#profile" class="btn btn-gradient"><i class="fa-solid fa-rocket"></i> Start Now</a>
+        </div>
+    </header>
+
+
+    <!-- Profile Optimization Section -->
+<section id="profile" class="profile-section">
+    <div class="container">
+        <h2 class="section-title"><i class="fa-solid fa-user-edit"></i> Profile Optimization</h2>
+        <p class="section-subtitle">Fill out your details and get an AI-generated LinkedIn headline and about section.</p>
+
+        <div class="row justify-content-center">
+            <!-- Form Section -->
+            <div class="col-lg-6 col-md-8">
+                <div class="form-card">
+                    <h4><i class="fa-solid fa-pen"></i> Enter Your Details</h4>
+                    <form id="profileForm">
+                        <div class="mb-3">
+                            <label class="form-label"><i class="fa-solid fa-user"></i> Full Name</label>
+                            <input type="text" class="form-control" id="fullName" placeholder="Enter your name">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label"><i class="fa-solid fa-briefcase"></i> Profession</label>
+                            <input type="text" class="form-control" id="profession" placeholder="e.g., Digital Marketer">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label"><i class="fa-solid fa-lightbulb"></i> Key Skills</label>
+                            <input type="text" class="form-control" id="skills" placeholder="e.g., SEO, Content Marketing">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label"><i class="fa-solid fa-clock"></i> Years of Experience</label>
+                            <input type="number" class="form-control" id="experience" placeholder="e.g., 5">
+                        </div>
+                        <button type="button" class="btn btn-gradient" onclick="generateProfile()">
+                            <i class="fa-solid fa-magic"></i> Generate
+                        </button>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Generated Content Display -->
+        <div class="row justify-content-center mt-4" id="generatedProfile" style="display: none;">
+            <div class="col-lg-6 col-md-8">
+                <div class="output-card">
+                    <h4><i class="fa-solid fa-heading"></i> LinkedIn Headline</h4>
+                    <p id="headlineOutput">Your AI-generated headline will appear here.</p>
+                    <button class="btn btn-secondary btn-sm" onclick="copyText('headlineOutput')"><i class="fa-solid fa-copy"></i> Copy</button>
+                    <button class="btn btn-primary btn-sm" onclick="generateProfile()"><i class="fa-solid fa-sync"></i> Regenerate</button>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-8 mt-3">
+                <div class="output-card">
+                    <h4><i class="fa-solid fa-user"></i> About Section</h4>
+                    <p id="aboutOutput">Your AI-generated about section will appear here.</p>
+                    <button class="btn btn-secondary btn-sm" onclick="copyText('aboutOutput')"><i class="fa-solid fa-copy"></i> Copy</button>
+                    <button class="btn btn-primary btn-sm" onclick="generateProfile()"><i class="fa-solid fa-sync"></i> Regenerate</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Post Idea & Content Generator Section -->
+<section id="post" class="post-section">
+    <div class="container">
+        <h2 class="section-title"><i class="fa-solid fa-pen-nib"></i> Post Idea & Content Generator</h2>
+        <p class="section-subtitle">Generate viral post ideas and AI-crafted LinkedIn content instantly.</p>
+
+        <div class="row justify-content-center">
+            <!-- Generate Post Ideas -->
+            <div class="col-lg-6 col-md-8">
+                <div class="form-card">
+                    <h4><i class="fa-solid fa-lightbulb"></i> Get Post Ideas</h4>
+                    <button class="btn btn-gradient" onclick="generatePostIdeas()">
+                        <i class="fa-solid fa-magic"></i> Generate Post Ideas
+                    </button>
+                    <ul id="postIdeasList" class="post-ideas-list mt-3"></ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Generate Full Post -->
+        <div class="row justify-content-center mt-4" id="postContentSection" style="display: none;">
+            <div class="col-lg-8">
+                <div class="output-card">
+                    <h4><i class="fa-solid fa-file-alt"></i> AI-Generated LinkedIn Post</h4>
+                    <p id="postOutput">Your AI-generated post will appear here.</p>
+                    <button class="btn btn-secondary btn-sm" onclick="copyText('postOutput')"><i class="fa-solid fa-copy"></i> Copy</button>
+                    <button class="btn btn-primary btn-sm" onclick="generateFullPost()"><i class="fa-solid fa-sync"></i> Regenerate</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Image Prompt Generator Section -->
+<section id="image-prompt" class="image-prompt-section">
+    <div class="container">
+        <h2 class="section-title"><i class="fa-solid fa-image"></i> AI Image Prompt Generator</h2>
+        <p class="section-subtitle">Generate AI-powered image prompts based on your LinkedIn post.</p>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="form-card">
+                    <h4><i class="fa-solid fa-file-image"></i> Generate Image Prompt</h4>
+                    <button class="btn btn-gradient" onclick="generateImagePrompt()">
+                        <i class="fa-solid fa-magic"></i> Generate Image Prompt
+                    </button>
+                    <p id="imagePromptOutput" class="output-text">Your AI-generated image prompt will appear here.</p>
+                    <button class="btn btn-secondary btn-sm" onclick="copyText('imagePromptOutput')">
+                        <i class="fa-solid fa-copy"></i> Copy
+                    </button>
+                    <button class="btn btn-primary btn-sm" onclick="generateImagePrompt()">
+                        <i class="fa-solid fa-sync"></i> Regenerate
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Carousel Content Generator Section -->
+<section id="carousel" class="carousel-section">
+    <div class="container">
+        <h2 class="section-title"><i class="fa-solid fa-layer-group"></i> AI Carousel Content Generator</h2>
+        <p class="section-subtitle">Generate high-engagement carousel content & image prompts.</p>
+
+        <div class="row justify-content-center">
+            <!-- Generate Carousel Content -->
+            <div class="col-lg-6 col-md-8">
+                <div class="form-card">
+                    <h4><i class="fa-solid fa-file-lines"></i> Generate Carousel Text</h4>
+                    <button class="btn btn-gradient" onclick="generateCarouselText()">
+                        <i class="fa-solid fa-magic"></i> Generate Carousel Content
+                    </button>
+                    <p id="carouselTextOutput" class="output-text">Your AI-generated carousel content will appear here.</p>
+                    <button class="btn btn-secondary btn-sm" onclick="copyText('carouselTextOutput')">
+                        <i class="fa-solid fa-copy"></i> Copy
+                    </button>
+                    <button class="btn btn-primary btn-sm" onclick="generateCarouselText()">
+                        <i class="fa-solid fa-sync"></i> Regenerate
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Generate Carousel Image Prompt -->
+        <div class="row justify-content-center mt-4">
+            <div class="col-lg-6 col-md-8">
+                <div class="form-card">
+                    <h4><i class="fa-solid fa-image"></i> Generate Image Prompts</h4>
+                    <button class="btn btn-gradient" onclick="generateCarouselImagePrompt()">
+                        <i class="fa-solid fa-magic"></i> Generate Image Prompts
+                    </button>
+                    <p id="carouselImagePromptOutput" class="output-text">Your AI-generated image prompts will appear here.</p>
+                    <button class="btn btn-secondary btn-sm" onclick="copyText('carouselImagePromptOutput')">
+                        <i class="fa-solid fa-copy"></i> Copy
+                    </button>
+                    <button class="btn btn-primary btn-sm" onclick="generateCarouselImagePrompt()">
+                        <i class="fa-solid fa-sync"></i> Regenerate
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Contact Section -->
+<section id="contact" class="contact-section">
+    <div class="container">
+        <h2 class="section-title"><i class="fa-solid fa-envelope"></i> Get in Touch</h2>
+        <p class="section-subtitle">For any inquiries, feel free to reach out via email.</p>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8">
+                <div class="form-card text-center">
+                    <h4><i class="fa-solid fa-paper-plane"></i> Contact Email</h4>
+                    <p class="contact-email">
+                        <i class="fa-solid fa-envelope"></i>  
+                        <a href="mailto:sajal24102004@gmail.com">sajal24102004@gmail.com</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer-section">
+    <div class="container text-center">
+        <p>&copy; 2025 LinkedIn AI Generator | Designed by You</p>
+        <div class="social-icons">
+            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-github"></i></a>
+        </div>
+    </div>
+</footer>
+
+
+</body>
+<script src="config.js"></script>
+<script src="script.js"></script>
+
+</html>
+
